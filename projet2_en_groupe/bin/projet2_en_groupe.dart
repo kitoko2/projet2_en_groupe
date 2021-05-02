@@ -3,6 +3,7 @@ import 'dart:io';
 import 'package:projet2_en_groupe/classe_bot.dart';
 import 'package:projet2_en_groupe/classe_player.dart';
 
+//les class sont dans le dossier lib
 void main(List<String> arguments) {
   var i = 1;
   var run = true;
