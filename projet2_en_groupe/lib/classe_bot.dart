@@ -1,3 +1,6 @@
+import 'package:projet2_en_groupe/utils.dart';
+import 'package:projet2_en_groupe/classe_player.dart';
+
 class Bot {
   int force;
   int health;
@@ -8,5 +11,11 @@ class Bot {
 
   void infoBot() {
     print('bot | santé: ${this.health}  | force: ${this.force}');
+  }
+
+  void attaqueBotVersPlayer(Player p) {
+    var coup = lanceDes('bot');
+    print('le bot assène un coup à ${p.pseudo} avec une force de $coup');
+    p.health -= coup;
   }
 }

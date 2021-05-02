@@ -2,6 +2,7 @@ import 'dart:math';
 import 'dart:io';
 import 'package:projet2_en_groupe/classe_bot.dart';
 import 'package:projet2_en_groupe/classe_player.dart';
+import 'package:projet2_en_groupe/utils.dart';
 
 void main(List<String> arguments) {
   var i = 1;
@@ -25,25 +26,20 @@ void main(List<String> arguments) {
         print('\n${player1.pseudo} ATTAQUE EN PREMIER\n');
         print('----$pseudo APPUIYER SUR ENTRER POUR LANCER LES DÉS----\n');
         stdin.readLineSync();
-        attaquePlayerVersBot(player1, bot);
+        player1.attaquePlayerVersBot(bot);
         bot.infoBot();
-        attaqueBotVersPlayer(bot, player1);
+        bot.attaqueBotVersPlayer(player1);
         player1.infoPlayer();
         //voir les infos du player1(santé...) après le coup du bot
         break;
       default:
         print('\nBOT ATTAQUE EN PREMIER\n');
-        attaqueBotVersPlayer(bot, player1);
+        bot.attaqueBotVersPlayer(player1);
         player1.infoPlayer();
-        attaquePlayerVersBot(player1, bot);
+        player1.attaquePlayerVersBot(bot);
         bot.infoBot();
       //voir les infos du bot(santé...) après le coup du player
     }
-    /*
-    NB: à chaque attaque du bot on ne demande pas d'appuiyer sur entrer
-    donc si la variable choix tombe successivement sur 1 le bot attaquera en premier le player plusieurs fois
-    sans qu'on demande d'appuiyer sur enter, ce n'est que lorsque la variable choix tomberas sur 0 qu'on demandera au player d'appuiyer sur entrer 
-    */
 
     print('FIN DU TOUR $i \n');
     i++;
@@ -51,9 +47,6 @@ void main(List<String> arguments) {
     if (player1.health <= 0 || bot.health <= 0) {
       run = false;
     }
-    /*si l'un des deux ou les deux ont une santé <=0 ,le combat est terminé et
-    c'est celui(entre le player et le bot) qui a la santé la plus élevé qui gagne
-    */
   } while (run);
 
   if (player1.health > bot.health) {
@@ -63,27 +56,4 @@ void main(List<String> arguments) {
   } else {
     print('match null');
   }
-}
-
-//fonctions
-
-void attaquePlayerVersBot(Player p, Bot b) {
-  var coup = lanceDes(p.pseudo);
-  print('${p.pseudo} assène un coup sur le bot avec une force de $coup');
-  b.health -= coup;
-}
-
-void attaqueBotVersPlayer(Bot b, Player p) {
-  var coup = lanceDes('bot');
-  print('le bot assène un coup à ${p.pseudo} avec une force de $coup');
-  p.health -= coup;
-}
-
-int lanceDes(String name) {
-  final r1 = Random();
-
-  var result = r1.nextInt(6) + 1 + r1.nextInt(6) + 1;
-
-  print('$name a lancé les dés et a obtenu la valeur $result');
-  return result;
 }
