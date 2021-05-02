@@ -5,4 +5,8 @@ class Bot {
     this.force = force;
     this.health = health;
   }
+
+  void infoBot() {
+    print('bot | santé: ${this.health}  | force: ${this.force}');
+  }
 }
