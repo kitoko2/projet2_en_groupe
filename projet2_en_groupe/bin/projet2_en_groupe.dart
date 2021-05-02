@@ -1,5 +1,8 @@
 import 'dart:math';
 import 'dart:io';
+import 'package:projet2_en_groupe/classe_bot.dart';
+import 'package:projet2_en_groupe/classe_player.dart';
+import 'package:projet2_en_groupe/utils.dart';
 
 void main(List<String> arguments) {
   var i = 1;
@@ -63,22 +66,6 @@ void main(List<String> arguments) {
   }
 }
 
-class Bot {
-  int force;
-  int health;
-  Bot(int force, int health) {
-    this.force = force;
-    this.health = health;
-  }
-}
-
-class Player {
-  String pseudo;
-  int force;
-  int health;
-  Player(this.pseudo, this.force, this.health);
-}
-
 //fonctions
 
 void infoPlayer(Player p) {
@@ -99,13 +86,4 @@ void attaqueBotVersPlayer(Bot b, Player p) {
   var coup = lanceDes('bot');
   print('le bot assène un coup à ${p.pseudo} avec une force de $coup');
   p.health -= coup;
-}
-
-int lanceDes(String name) {
-  final r1 = Random();
-
-  var result = r1.nextInt(6) + 1 + r1.nextInt(6) + 1;
-
-  print('$name a lancé les dés et a obtenu la valeur $result');
-  return result;
 }
