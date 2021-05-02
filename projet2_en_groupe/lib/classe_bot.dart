@@ -14,7 +14,7 @@ class Bot {
   }
 
   void attaqueBotVersPlayer(Player p) {
-    var coup = lanceDes('bot');
+    var coup = this.force * lanceDes('bot'); //multiplication avec la force
     print('le bot assène un coup à ${p.pseudo} avec une force de $coup');
     p.health -= coup;
   }

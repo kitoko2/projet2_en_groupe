@@ -12,8 +12,13 @@ class Player {
   }
 
   void attaquePlayerVersBot(Bot b) {
-    var coup = lanceDes(this.pseudo);
+    var coup = this.force * lanceDes(this.pseudo);
+    //multiplication avec la force
     print('${this.pseudo} assène un coup sur le bot avec une force de $coup');
     b.health -= coup;
+  }
+
+  void victoire() {
+    print('\n${(this.pseudo).toUpperCase()} VOUS AVEZ GAGNEZ LA PARTIE!\n');
   }
 } //class player

@@ -2,7 +2,6 @@ import 'dart:math';
 import 'dart:io';
 import 'package:projet2_en_groupe/classe_bot.dart';
 import 'package:projet2_en_groupe/classe_player.dart';
-import 'package:projet2_en_groupe/utils.dart';
 
 void main(List<String> arguments) {
   var i = 1;
@@ -50,7 +49,7 @@ void main(List<String> arguments) {
   } while (run);
 
   if (player1.health > bot.health) {
-    print('\nVOUS AVEZ GAGNEZ LA PARTIE!\n');
+    player1.victoire();
   } else if (player1.health < bot.health) {
     print('\nVOUS AVEZ PERDU LA PARTIE!\n');
   } else {
